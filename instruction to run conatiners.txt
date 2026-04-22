@@ -1,0 +1,11 @@
+# Load images
+docker load -i eclipse-temurin17.tar
+docker load -i user-service.tar
+docker load -i auth-service.tar
+
+# Network banao
+docker network create microservice-network
+
+# Containers run karo
+docker run -d --name user-service --network microservice-network -p 8087:8087 user-service
+docker run -d --name auth-service --network microservice-network -p 8081:8081 auth-service
